@@ -8,11 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <img
-                src="src/assets/img/chevaverse.png"
-                alt="ChevaVerse"
-                className="w-8 h-8 rounded-xl object-cover"
-              />
+              <img src="/chevaverse.png" alt="ChevaVerse" className="w-8 h-8 rounded-xl object-cover" />
               <span className="font-display font-bold text-xl gradient-text">ChevaVerse</span>
             </div>
             <p className="text-gray-500 text-sm max-w-md">

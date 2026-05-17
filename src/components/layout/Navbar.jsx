@@ -72,11 +72,7 @@ export default function Navbar({ searchQuery, onSearch, onClear, activePage, onN
             onClick={() => handleNavigate('/', 'Home')}
             className="flex items-center gap-2 flex-shrink-0 cursor-pointer"
           >
-            <img
-              src="src/assets/img/chevaverse.png"
-              alt="ChevaVerse"
-              className="w-8 h-8 rounded-xl object-cover"
-            />
+            <img src="/chevaverse.png" alt="ChevaVerse" className="w-8 h-8 rounded-xl object-cover" />
             <span className="font-display font-bold text-xl gradient-text hidden sm:inline">
               ChevaVerse
             </span>
