@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!api/|_next/|static/|favicon.ico|logo.png|chevaverse.png).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
