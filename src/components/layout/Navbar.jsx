@@ -7,6 +7,7 @@ import {
   X, Menu
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import NotificationBell from '../common/NotificationBell';
 
 const BROWSE_MENU = [
   { label: 'Home', icon: Home, path: '/app' },
@@ -100,14 +101,14 @@ export default function Navbar({ searchQuery, onSearch, onClear, activePage, onN
                     <button
                       key={item.label}
                       onClick={() => handleNavigate(item.path, item.label)}
-                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-all duration-200
+                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-all duration-200 text-left
                         ${activePage === item.label
                           ? 'text-cyan-400 bg-cyan-500/10'
                           : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
                         }`}
                     >
                       <item.icon size={16} />
-                      {item.label}
+                      <span>{item.label}</span>
                     </button>
                   ))}
                 </div>
@@ -185,7 +186,7 @@ export default function Navbar({ searchQuery, onSearch, onClear, activePage, onN
           {/* Right Actions */}
           <div className="flex items-center gap-2 flex-shrink-0">
             <button className="hidden md:flex w-9 h-9 rounded-xl bg-white/[0.04] border border-white/[0.08] items-center justify-center text-gray-400 hover:text-white hover:bg-white/[0.07] transition-all">
-              <Bell size={16} />
+              <NotificationBell />
             </button>
 
             {/* Profile Dropdown */}
@@ -243,14 +244,14 @@ export default function Navbar({ searchQuery, onSearch, onClear, activePage, onN
                 <button
                   key={item.label}
                   onClick={() => handleNavigate(item.path, item.label)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all duration-200
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all duration-200 text-left
                     ${activePage === item.label
                       ? 'text-cyan-400 bg-cyan-500/10'
                       : 'text-gray-400 hover:text-white hover:bg-white/[0.04]'
                     }`}
                 >
                   <item.icon size={18} />
-                  {item.label}
+                  <span>{item.label}</span>
                 </button>
               ))}
               <div className="h-px bg-white/[0.06] my-2" />

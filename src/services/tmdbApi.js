@@ -39,7 +39,9 @@ export const tmdbApi = {
 
   // ==================== IMAGE ====================
   getImage: (path, size = 'w342') => {
-    if (!path) return 'https://placehold.co/500x750?text=No+Poster';
+    if (!path) {
+      return 'https://placehold.co/500x750/0F1A36/22D3EE?text=No+Poster';
+    }
     return `${IMAGE_URL}/${size}${path}`;
   },
 
@@ -72,7 +74,7 @@ export const tmdbApi = {
       'War': 10768,
       'Western': 37,
     };
-    
+
     const tvGenreId = tvGenreMapping[genreName] || 10759;
     const res = await api.get('/discover/tv', {
       params: { with_genres: tvGenreId, page }
@@ -176,6 +178,12 @@ export const tmdbApi = {
 
   discoverTv: async (params = {}) => {
     const res = await api.get('/discover/tv', { params });
+    return res.data;
+  },
+
+  // ==================== NOW PLAYING ====================
+  getNowPlayingMovies: async (page = 1) => {
+    const res = await api.get('/movie/now_playing', { params: { page } });
     return res.data;
   },
 };

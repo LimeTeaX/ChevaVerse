@@ -1,6 +1,7 @@
 // src/components/movie/MovieRow.jsx
 import { useRef } from 'react';
-import { ChevronLeft, ChevronRight, Flame, Sparkles, Trophy, Clapperboard } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ChevronLeft, ChevronRight, Flame, Sparkles, Trophy, Clapperboard, Film } from 'lucide-react';
 import MovieCard from './MovieCard';
 
 // Mapping icon berdasarkan title
@@ -14,6 +15,8 @@ const getRowIcon = (title) => {
       return <Trophy size={18} className="text-gold-400" />;
     case 'Animation Movies':
       return <Clapperboard size={18} className="text-cyan-400" />;
+    case 'Now Playing':
+      return <Film size={18} className="text-cyan-400" />;
     default:
       return null;
   }
@@ -49,9 +52,12 @@ export default function MovieRow({ title, items, onCardClick, showRank = false, 
           >
             <ChevronRight size={14} />
           </button>
-          <button className="text-[12px] text-cyan-400 hover:text-cyan-300 transition-colors font-medium ml-1 flex items-center gap-1">
+          <Link
+            to={`/category/${title.toLowerCase().replace(/ /g, '-')}`}
+            className="text-[12px] text-cyan-400 hover:text-cyan-300 transition-colors font-medium ml-1 flex items-center gap-1"
+          >
             See All <ChevronRight size={12} />
-          </button>
+          </Link>
         </div>
       </div>
 

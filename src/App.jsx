@@ -15,6 +15,8 @@ import FavoritesPage from './pages/FavoritesPage';
 import WatchlistPage from './pages/WatchlistPage';
 import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
+import NotificationsPage from './pages/NotificationsPage';
+import CategoryPage from './pages/CategoryPage';
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();
@@ -41,6 +43,8 @@ function App() {
             <Route path="/watchlist" element={<ProtectedRoute><WatchlistPage /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
             <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+            <Route path="/notifications" element={<ProtectedRoute><NotificationsPage /></ProtectedRoute>} />
+            <Route path="/category/:type" element={<ProtectedRoute><CategoryPage /></ProtectedRoute>} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
