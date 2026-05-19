@@ -15,15 +15,15 @@ const TYPE_FILTERS = [
 
 function SearchResultsGrid({ items, onCardClick, loading }) {
   const filteredItems = filterAdultContent(items);
-  
+
   if (loading) {
     return (
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {[...Array(12)].map((_, i) => (
-          <div key={i} className="animate-pulse">
-            <div className="rounded-[20px] bg-white/[0.05] aspect-[2/3]" />
-            <div className="h-3 bg-white/[0.05] rounded mt-3 w-3/4" />
-            <div className="h-2.5 bg-white/[0.05] rounded mt-1.5 w-1/2" />
+          <div key={i} className="animate-fadeInUp">
+            <div className="rounded-[20px] bg-white/[0.05] aspect-[2/3] skeleton-shimmer" />
+            <div className="h-3 bg-white/[0.05] rounded mt-3 w-3/4 skeleton-shimmer" />
+            <div className="h-2.5 bg-white/[0.05] rounded mt-1.5 w-1/2 skeleton-shimmer" />
           </div>
         ))}
       </div>
@@ -102,7 +102,7 @@ export default function MovieFinder({ searchQuery, onSearchChange }) {
           tmdbApi.getTopRatedMovies(1),
           tmdbApi.getMoviesByGenre(16, 1),
         ]);
-        
+
         setNowPlaying(filterAdultContent(nowData.results)?.slice(0, 14) || []);
         setTrending(filterAdultContent(trendData.results)?.slice(0, 14) || []);
         setAnime(filterAdultContent(animeData.results)?.slice(0, 14) || []);
@@ -170,8 +170,8 @@ export default function MovieFinder({ searchQuery, onSearchChange }) {
                   key={f.key}
                   onClick={() => setFilter(f.key)}
                   className={`px-4 py-1.5 rounded-full text-[12px] font-medium transition-all border ${filter === f.key
-                      ? 'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white border-transparent'
-                      : 'bg-white/[0.04] border-white/[0.08] text-gray-400 hover:text-white'
+                    ? 'bg-gradient-to-r from-cyan-500 to-cyan-600 text-white border-transparent'
+                    : 'bg-white/[0.04] border-white/[0.08] text-gray-400 hover:text-white'
                     }`}
                 >
                   {f.label}

@@ -5,6 +5,7 @@ import { tmdbApi } from '../services/tmdbApi';
 import MovieCard from '../components/movie/MovieCard';
 import DetailModal from '../components/movie/DetailModal';
 import { Loader2 } from 'lucide-react';
+import { fetchWithFilter } from '../utils/fetchWithFilter';
 
 export default function AnimePage() {
   const [anime, setAnime] = useState([]);
@@ -18,7 +19,7 @@ export default function AnimePage() {
     const loadAnime = async () => {
       setLoading(true);
       try {
-        const data = await tmdbApi.getTVByGenre('Animation', page);
+        const data = await fetchWithFilter(tmdbApi.getTVByGenre, 'Animation', page);
         setAnime(prev => page === 1 ? data.results : [...prev, ...data.results]);
       } catch (e) {
         console.error(e);

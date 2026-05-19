@@ -6,9 +6,10 @@ import MovieCard from '../components/movie/MovieCard';
 import DetailModal from '../components/movie/DetailModal';
 import { tmdbApi } from '../services/tmdbApi';
 import { Loader2, ArrowLeft } from 'lucide-react';
+import { filterAdultContent } from '../constants/blacklist';
 
 export default function CategoryPage() {
-  const { type } = useParams(); // trending, top-rated, now-playing, etc
+  const { type } = useParams();
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +21,7 @@ export default function CategoryPage() {
 
   // Mapping type ke API function
   const getTitle = () => {
-    switch(type) {
+    switch (type) {
       case 'trending': return 'Trending Now';
       case 'top-rated': return 'Top Rated';
       case 'now-playing': return 'Now Playing';
@@ -33,7 +34,7 @@ export default function CategoryPage() {
   const fetchData = async (pageNum) => {
     try {
       let data;
-      switch(type) {
+      switch (type) {
         case 'trending':
           data = await tmdbApi.getTrending(pageNum);
           break;
@@ -63,7 +64,8 @@ export default function CategoryPage() {
     const loadItems = async () => {
       setLoading(true);
       const results = await fetchData(1);
-      setItems(results);
+      const filteredResults = filterAdultContent(results);
+      setItems(filteredResults);
       setHasMore(results.length >= 20);
       setLoading(false);
     };
@@ -102,7 +104,7 @@ export default function CategoryPage() {
         onSearch={setSearchQuery}
         onClear={() => setSearchQuery('')}
       />
-      
+
       <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-6">
         <button
           onClick={() => navigate(-1)}

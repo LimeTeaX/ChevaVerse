@@ -15,28 +15,28 @@ export default function HeroSection({ onCardClick }) {
     return saved ? JSON.parse(saved) : [];
   });
 
-const addToWatchlist = (item) => {
-  const exists = watchlist.some(w => w.id === item.id);
-  if (!exists) {
-    const newWatchlist = [...watchlist, {
-      id: item.id,
-      title: item.title || item.name,
-      name: item.name,
-      poster_path: item.poster_path,
-      vote_average: item.vote_average,
-      release_date: item.release_date,     
-      first_air_date: item.first_air_date,
-      media_type: item.media_type || (item.first_air_date ? 'tv' : 'movie')
-    }];
-    setWatchlist(newWatchlist);
-    localStorage.setItem('watchlist', JSON.stringify(newWatchlist));
-    setNotification({ type: 'success', text: `Added to Watchlist` });
-    setTimeout(() => setNotification(null), 2000);
-  } else {
-    setNotification({ type: 'error', text: `Already in Watchlist` });
-    setTimeout(() => setNotification(null), 2000);
-  }
-};
+  const addToWatchlist = (item) => {
+    const exists = watchlist.some(w => w.id === item.id);
+    if (!exists) {
+      const newWatchlist = [...watchlist, {
+        id: item.id,
+        title: item.title || item.name,
+        name: item.name,
+        poster_path: item.poster_path,
+        vote_average: item.vote_average,
+        release_date: item.release_date,
+        first_air_date: item.first_air_date,
+        media_type: item.media_type || (item.first_air_date ? 'tv' : 'movie')
+      }];
+      setWatchlist(newWatchlist);
+      localStorage.setItem('watchlist', JSON.stringify(newWatchlist));
+      setNotification({ type: 'success', text: `Added to Watchlist` });
+      setTimeout(() => setNotification(null), 2000);
+    } else {
+      setNotification({ type: 'error', text: `Already in Watchlist` });
+      setTimeout(() => setNotification(null), 2000);
+    }
+  };
 
   useEffect(() => {
     const loadHero = async () => {
@@ -100,12 +100,12 @@ const addToWatchlist = (item) => {
     <div className="relative h-[420px] rounded-[28px] overflow-hidden mb-7 group">
       {/* Background */}
       <div
-        className={`absolute inset-0 transition-opacity duration-500 ${animating ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute inset-0 transition-all duration-1000 ease-out ${animating ? 'opacity-0 scale-105' : 'opacity-100 scale-100'}`}
       >
         <img
           src={backdropUrl}
           alt={title}
-          className="w-full h-full object-cover object-center scale-105 group-hover:scale-110 transition-transform duration-[8s]"
+          className="w-full h-full object-cover object-center transition-transform duration-[10s] ease-out group-hover:scale-110"
         />
       </div>
 

@@ -186,6 +186,11 @@ export const tmdbApi = {
     const res = await api.get('/movie/now_playing', { params: { page } });
     return res.data;
   },
+
+  getWatchProviders: async (mediaType, id) => {
+    const res = await api.get(`/${mediaType}/${id}/watch/providers`);
+    return res.data;
+  },
 };
 
 export default tmdbApi;
