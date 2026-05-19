@@ -74,13 +74,24 @@ export default function CategoryPage() {
 
   const loadMore = async () => {
     const nextPage = page + 1;
-    const newItems = await fetchData(nextPage);
-    if (newItems.length > 0) {
-      setItems(prev => [...prev, ...newItems]);
+    setLoading(true);
+
+    try {
+      const newItemsRaw = await fetchData(nextPage);
+
+      const combinedItems = [...items, ...newItemsRaw];
+
+      const uniqueItems = Array.from(
+        new Map(combinedItems.map(item => [item.id, item])).values()
+      );
+
+      setItems(uniqueItems);
       setPage(nextPage);
-      setHasMore(newItems.length >= 20);
-    } else {
-      setHasMore(false);
+      setHasMore(newItemsRaw.length >= 20);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
